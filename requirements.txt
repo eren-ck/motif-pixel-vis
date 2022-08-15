@@ -1,0 +1,13 @@
+fa2==0.3.5
+Flask==2.2.2
+Flask-Compress==1.9.0
+Flask-Cors==3.0.10
+hdbscan==0.8.27
+matplotlib==3.4.1
+networkx==2.6.3
+numpy==1.20.2
+pandas==1.2.4
+scikit-learn==0.24.1
+scipy==1.6.2
+tqdm==4.60.0
+git+https://github.com/eren-ck/orca-py

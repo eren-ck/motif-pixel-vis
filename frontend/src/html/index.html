@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Motif Pixel Vis</title>
+  </head>
+  <header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex">
+        <div class="p-2 flex-grow-1 bd-highlight">
+          <span class="navbar-brand d-flex align-items-center">
+            Motif-Based Visual Analysis of Dynamic Networks
+          </span>
+        </div>
+        <div class="p-2 bd-highlight"></div>
+      </div>
+    </div>
+  </header>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row" id="overview">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12 toolbar" id="toolbar">
+              <div class="row">
+                <div class="col-md-2 text-center toolbar-border-right">
+                  <div
+                    class="font-weight-bold"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Change dataset"
+                  >
+                    Dataset
+                  </div>
+                  <select
+                    id="dataset-option"
+                    class="selectpicker show-tick"
+                    data-width="70%"
+                    data-size="auto"
+                  >
+                    <option title="Reddit-Small" data="reddit_small.pkl"
+                      >Reddit-Small</option
+                    >
+                    <option title="Reddit" data="reddit.pkl">Reddit</option>
+
+                    <option title="Synthetic" data="synthetic.pkl"
+                      >Synthetic</option
+                    >
+                  </select>
+                </div>
+
+                <div class="col-md-3 text-center toolbar-border-right">
+                  <div
+                    class="font-weight-bold"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Change reordering of x- and y-axis"
+                  >
+                    Reorder Network Census
+                  </div>
+
+                  <select
+                    id="motif-sp-x-axis"
+                    class="selectpicker show-tick"
+                    data-width="40%"
+                    data-size="auto"
+                  >
+                    <option title="Time" metric="time" selected>Time</option>
+                    <option title="SP Clustering" metric="clustering">
+                      SP Clustering
+                    </option>
+                    <option title="Density" metric="density">
+                      Density
+                    </option>
+                    <option title="Transitivity" metric="transitivity">
+                      Transitivity
+                    </option>
+                    <option
+                      title="Clustering Coefficient"
+                      metric="average_clustering"
+                    >
+                      AVG Clustering Coefficient
+                    </option>
+                    <option title="#Nodes" metric="number_of_nodes">
+                      Number of nodes
+                    </option>
+                    <option title="#Edges" metric="number_of_edges">
+                      Number of edges
+                    </option>
+                    <option
+                      title="#Connected components"
+                      metric="number_connected_components"
+                    >
+                      Number of connected components
+                    </option>
+                  </select>
+
+                  <select
+                    id="motif-sp-y-axis"
+                    class="selectpicker show-tick"
+                    data-width="40%"
+                    data-size="auto"
+                  >
+                    <option title="Motif Ordering" metric="linear" selected
+                      >Motif Ordering</option
+                    >
+                    <option title="Mean SP" metric="mean">Mean SP</option>
+                    <option title="Median SP" metric="median">Median SP</option>
+                    <option title="Minimum SP" metric="min">Minimum SP</option>
+                    <option title="Maximum SP" metric="max">Maxiumum SP</option>
+                    <option title="Standard Deviation SP" metric="std"
+                      >Standard Deviation SP</option
+                    >
+                    <option title="Variance SP" metric="var"
+                      >Variance SP</option
+                    >
+                  </select>
+                </div>
+
+                <div class="col-md-3 text-center toolbar-border-right">
+                  <div
+                    class="font-weight-bold"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Change reordering of x- and y-axis"
+                  >
+                    Reordering GDVs
+                  </div>
+
+                  <select
+                    id="graphlet-x-axis"
+                    class="selectpicker show-tick"
+                    data-width="40%"
+                    data-size="auto"
+                  >
+                    <option title="Node ids" metric="node_ids" selected
+                      >Node IDs</option
+                    >
+                    <option title="Clustering" metric="clustering"
+                      >Clustering</option
+                    >
+                    <option title="Degree" metric="degree">
+                      Degree
+                    </option>
+                    <option title="PageRank" metric="pagerank">
+                      PageRank
+                    </option>
+                    <option
+                      title="Degree Centrality"
+                      metric="degree_centrality"
+                    >
+                      Degree Centrality
+                    </option>
+                    <option
+                      title="Closeness Centrality"
+                      metric="closeness_centrality"
+                    >
+                      Closeness Centrality
+                    </option>
+                  </select>
+
+                  <select
+                    id="graphlet-y-axis"
+                    class="selectpicker show-tick"
+                    data-width="40%"
+                    data-size="auto"
+                  >
+                    <option
+                      title="Graphlet Degree Vector"
+                      metric="linear"
+                      selected
+                      >Graphlet Degree Vector</option
+                    >
+                    <option title="Mean GDV" metric="mean">Mean GDV</option>
+                    <option title="Median GDV" metric="median"
+                      >Median GDV</option
+                    >
+                    <option title="Minimum GDV" metric="min"
+                      >Minimum GDV</option
+                    >
+                    <option title="Maximum GDV" metric="max"
+                      >Maxiumum GDV</option
+                    >
+                    <option title="Standard Deviation GDV" metric="std"
+                      >Standard Deviation GDV</option
+                    >
+                    <option title="Variance GDV" metric="var"
+                      >Variance GDV</option
+                    >
+                  </select>
+                </div>
+
+                <div class="col-md-1 text-center toolbar-border-right">
+                  <div class="font-weight-bold margin-to-buttons">
+                    Aggregation
+                  </div>
+                  <div class="btn-group flex-wrap">
+                    <button
+                      type="button"
+                      id="button-cluster-pixel-vis"
+                      class="btn btn-outline-dark"
+                      data-toggle="button"
+                      autocomplete="off"
+                    >
+                      <i
+                        class="mdi mdi-format-line-weight mdi-rotate-90"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="Cluster and group pixel visualizations"
+                      ></i>
+                    </button>
+
+                    <button
+                      type="button"
+                      id="button-cluster-graph-vis"
+                      class="btn btn-outline-dark"
+                      data-toggle="button"
+                      aria-pressed="true"
+                      autocomplete="off"
+                    >
+                      <i
+                        class="mdi mdi-google-circles-communities"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="Cluster network view with more than 100 nodes"
+                      ></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="col-md-1 text-center toolbar-border-right"
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  title="Color Legend"
+                >
+                  <div class="font-weight-bold">Census</div>
+                  <svg id="svg-graph-sentiment" width="80" height="40">
+                    <rect
+                      class="legend"
+                      width="20"
+                      height="20"
+                      y="5"
+                      x="0px"
+                      style="fill: #67001f;"
+                    ></rect>
+                    <rect
+                      class="legend"
+                      width="20"
+                      height="20"
+                      y="5"
+                      x="21px"
+                      style="fill: #f7f7f7;"
+                    ></rect>
+                    <rect
+                      class="legend"
+                      width="20"
+                      height="20"
+                      y="5"
+                      x="41px"
+                      style="fill: #053061;"
+                    ></rect>
+                    <text class="legend-text" y="40" x="3px">-1</text>
+                    <text class="legend-text" y="40" x="25px">0</text>
+                    <text class="legend-text" y="40" x="45px">1</text>
+                  </svg>
+                </div>
+
+                <div
+                  class="col-md-2 text-center toolbar-border-right"
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  title="Color Legend"
+                >
+                  <div class="font-weight-bold">Node-Level Metric (GDV)</div>
+                  <svg id="svg-graph-sentiment" width="200" height="40">
+                    <rect
+                      class="legend"
+                      width="40"
+                      height="20"
+                      y="5"
+                      x="0px"
+                      style="fill: #ffffff;"
+                    ></rect>
+                    <rect
+                      class="legend"
+                      width="40"
+                      height="20"
+                      y="5"
+                      x="41px"
+                      style="fill: #bdbdbd;"
+                    ></rect>
+                    <rect
+                      class="legend"
+                      width="40"
+                      height="20"
+                      y="5"
+                      x="81px"
+                      style="fill: #525252;"
+                    ></rect>
+                    <rect
+                      class="legend"
+                      width="40"
+                      height="20"
+                      y="5"
+                      x="121px"
+                      style="fill: #252525;"
+                    ></rect>
+                    <rect
+                      class="legend"
+                      width="40"
+                      height="20"
+                      y="5"
+                      x="161px"
+                      style="fill: #000000;"
+                    ></rect>
+                    <text class="legend-text" y="40" x="20px">0</text>
+                    <text class="legend-text" y="40" x="50px">10</text>
+                    <text class="legend-text" y="40" x="90px">100</text>
+                    <text class="legend-text" y="40" x="120px">1000</text>
+                    <text class="legend-text" y="40" x="160px">10000</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <br />
+                  <blockquote class="blockquote">
+                    <p class="mb-0">
+                      <em><u>Network-Level Census</u></em>
+                    </p>
+                  </blockquote>
+                </div>
+                <div class="col-md-12" id="motif-vis"></div>
+                <i class="mdi mdi-48px mdi-spin mdi-loading" id="spinner"></i>
+
+                <div class="col-md-12">
+                  <br />
+                  <blockquote class="blockquote">
+                    <p class="mb-0">
+                      <em><u>Node-Level Metric (GDV)</u></em>
+                    </p>
+                  </blockquote>
+                </div>
+                <div class="col-md-12" id="graphlet-vis"></div>
+              </div>
+            </div>
+            <div class="col-md-4 border-left">
+              <br />
+              <blockquote class="blockquote">
+                <p class="mb-0">
+                  <em><u>Network View</u></em>
+
+                  <span id="bagde-graph-vis-cluster">
+                    <span
+                      class="badge rounded-pill bg-secondary"
+                      id="button-cluster-left"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="Previous Cluster"
+                    >
+                      <i class="mdi mdi-18px mdi-light mdi-arrow-left-bold"></i>
+                    </span>
+
+                    <span
+                      class="badge rounded-pill bg-secondary"
+                      id="button-cluster-right"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="Next Cluster"
+                    >
+                      <i
+                        class="mdi mdi-18px mdi-light mdi-arrow-right-bold"
+                      ></i>
+                    </span>
+                  </span>
+                </p>
+              </blockquote>
+
+              <div class="col-md-12" id="graph-vis"></div>
+              <i
+                class="mdi mdi-48px mdi-spin mdi-loading"
+                id="spinner-graph-vis"
+              ></i>
+            </div>
+          </div>
+
+          <div id="tooltip" class="hide">
+            <p id="meta-date"></p>
+            <div class="table-responsive">
+              <table class="table">
+                <tbody id="table-motifs" class="table-sm"></tbody>
+              </table>
+            </div>
+            <p id="meta"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="/static/bundle.js"></script>
+</html>
