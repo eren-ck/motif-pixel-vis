@@ -1,8 +1,22 @@
-# Motif Pixel Visualization
+# Motif-Based Visual Analysis of Dynamic Networks
 
-__TODO: Update Readme with link to paper, abstract, paper figures.__ 
+<p align="justify">
+Many data analysis problems rely on dynamic networks, such as social or communication network analyses. Providing a scalable overview of long sequences of such dynamic networks remains challenging due to the underlying large-scale data containing elusive topological changes. We propose two complementary pixel-based visualizations, which reflect occurrences of selected sub-networks (motifs) and provide a time-scalable overview of dynamic networks: a network-level census (motif significance profiles) linked with a node-level sub-network metric (graphlet degree vectors) views to reveal structural changes, trends, states, and outliers. The network census captures significantly occurring motifs compared to their expected occurrences in random networks and exposes structural changes in a dynamic network. The sub-network metrics display the local topological neighborhood of a node in a single network belonging to the dynamic network. The linked pixel-based visualizations allow exploring motifs in different-sized networks to analyze the changing structures within and across dynamic networks, for instance, to visually analyze the shape and rate of changes in the network topology. We describe the identification of visual patterns, also considering different reordering strategies to emphasize visual patterns. We demonstrate the approach's usefulness by a use case analysis based on real-world large-scale dynamic networks, such as the evolving social networks of Reddit or Facebook.
+</p>
+
 
 _This repository provides a Python/Javascript implementation of prototype as described in the paper:_
+
+```bibtex
+@inproceedings{Cakmak2022Motif,
+  author = {Cakmak, Eren and Fuchs, Johannes and Jäckle, Dominik and Schreck, Tobias and Brandes, Ulrik and Keim, Daniel A.},
+  booktitle = {Visualization in Data Science (VDS) (to appear)},
+  month = {10},
+  publisher = {IEEE},
+  title = {Motif-Based Visual Analysis of Dynamic Networks},
+  year = {2022}
+}
+```
 
 ---
 
